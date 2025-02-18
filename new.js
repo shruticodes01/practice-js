@@ -379,50 +379,513 @@ const jonasNewInfo = {
     return this.age;
   },
 
-  getSummary: function() {
+  getSummary: function () {
     // this.driverLicense = this.hasDriversLicense ? "a" : "no";
     // this.summary = `${this.firstName} is a ${this.age} year old ${this.job}, and he has ${this.driverLicense} driver's license`
-    this.summary = `${this.firstName} is a ${this.calcAges()} year old ${this.job}, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`
+    this.summary = `${this.firstName} is a ${this.calcAges()} year old ${
+      this.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
 
-    return this.summary
-  }
-
+    return this.summary;
+  },
 };
-
 
 // console.log(jonasNewInfo.calcAges());
 console.log(jonasNewInfo.getSummary());
 
-
-// challenge 3 
+// challenge 3
 
 const markInfo = {
-  firstName : "Mark",
-  lastName : "Miller",
-  mass : 78,
-  height : 1.69,
+  firstName: "Mark",
+  lastName: "Miller",
+  mass: 78,
+  height: 1.69,
 
-  calcBMI : function() {
-    this.markBMI = this.mass / this.height**2;
+  calcBMI: function () {
+    this.markBMI = this.mass / this.height ** 2;
     return this.markBMI;
-  }
-}
-
+  },
+};
 
 const johnInfo = {
-  firstName : "John",
-  lastName : "Smith",
-  mass : 92,
-  height : 1.95,
+  firstName: "John",
+  lastName: "Smith",
+  mass: 92,
+  height: 1.95,
 
-  calcBMI : function() {
-    this.johnBMI = this.mass / this.height**2;
+  calcBMI: function () {
+    this.johnBMI = this.mass / this.height ** 2;
     return this.johnBMI;
-  }
-}
+  },
+};
 
 console.log(markInfo.calcBMI());
 console.log(johnInfo.calcBMI());
 
-const checkHigherBMI = (markInfo.calcBMI() > johnInfo.calcBMI()) ? console.log(`${markInfo.firstName} ${markInfo.lastName}'s BMI (${markInfo.markBMI}) is higher than ${johnInfo.firstName} ${johnInfo.lastName}'s (${johnInfo.johnBMI}))`) :
-console.log(`${johnInfo.firstName} ${johnInfo.lastName}'s BMI (${johnInfo.johnBMI}) is higher than ${markInfo.firstName} ${markInfo.lastName}'s (${markInfo.markBMI}))`)
+const checkHigherBMI =
+  markInfo.calcBMI() > johnInfo.calcBMI()
+    ? console.log(
+        `${markInfo.firstName} ${markInfo.lastName}'s BMI (${markInfo.markBMI}) is higher than ${johnInfo.firstName} ${johnInfo.lastName}'s (${johnInfo.johnBMI}))`
+      )
+    : console.log(
+        `${johnInfo.firstName} ${johnInfo.lastName}'s BMI (${johnInfo.johnBMI}) is higher than ${markInfo.firstName} ${markInfo.lastName}'s (${markInfo.markBMI}))`
+      );
+
+// for loops
+// for loop keeps running until the condition is TRUE
+
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights repetion ${rep}`);
+}
+
+// for loop SYNTAX - Breakdown:
+
+// let rep = 1; --- Initial value of the counter. Here we have to use "let" variable because this counter will later be updated by for loop
+// rep <= 10; --- logical condition. In this example, it says that the loop will be executed until the rep counter is less than or equal to 10.
+// rep++ --- Updates/increases the counter by 1 after each iteration. If you dont mention this, it will create an infinite loop.
+//////////// The condition continue to remain TRUE if the counter remains at 1. We want the counter to stop when it reaches 10.
+
+// Most used application of for__loop is to loop through an ARRAY !
+
+const jonasArray = [
+  "Jonas",
+  "Schmedtmann",
+  2037 - 1991,
+  "teacher",
+  ["Michael", "Peter", "Steven"], // Array is also an Object
+  true,
+];
+
+// const types = [];
+
+// for (let i = 0; i < jonasArray.length; i++) {
+//   // Reading from jonasArray
+//   console.log(jonasArray[i], typeof jonasArray[i]);
+
+//   // Filling/Updating info in types array from jonasArray
+//   types[i] = typeof jonasArray[i];
+
+//   //Another way for Filling/Updating info in types array from jonasArray
+//   types.push(typeof jonasArray[i]); // we use push() method as we want the data-types to be added to the end of an Array.
+// }
+
+// console.log(types);
+
+// To create a new array based on the values of one original array
+// In the above example we create a separate array called types which will contain data-types for all the elements stored inside jonasArray
+
+// 1) Outside the for__loop we create an empty array ---- const types = [];
+// 2) We use the for__loop created to read data from jonasArray -- this is because as types array is based on jonasArray it will have same length.
+// 3) Here we write:  types[i] = typeof jonasArray[i];
+// types[i] = typeof jonasArray[i]; -- this says that, types Array[at position i] = typeOf(data type of the element) in jonasArray[at position i]
+// Here, i is the index positions of the Arrays.
+// And it will continue to run the same number of times as jonasArray.
+
+// Example 2 -- Calculate ages based on birthYears.
+
+const birthYears = [1990, 1967, 2002, 2010, 2018];
+
+const ageNew = [];
+
+for (let i = 0; i < birthYears.length; i++) {
+  ageNew.push(2037 - birthYears[i]);
+}
+
+console.log(ageNew);
+
+// for__loop ----- continue and break statement
+// continue statement - exit the current iteration of the loop and continue to the next one.
+// break statement - completely terminate the whole loop.
+
+// Example based on jonasArray -- Only print elements that are "strings" to the array --- use continue statement
+
+for (let i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] !== "string") continue; // if typeof of the current element in not a "string" exit the iteration and go to the next one.
+
+  console.log(jonasArray[i], typeof jonasArray[i]);
+}
+
+// Example 2 - jonasArray --- Terminate loop after NUMBER is found
+// basically, dont log elements once the loop iterates an element thats a number.
+
+for (let i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] === "number") break; // if typeof of the current element is number terminate the whole loop completely.
+
+  console.log(jonasArray[i], typeof jonasArray[i]); // Therefore, this logs - Jonas string and Schmedtmann string.
+  // Because next element in the jonasArray is a number (2037-1991)
+}
+
+// Looping Backwards - Loop over an array backwards
+
+// Example based on jonasArray
+
+// earlier we looped from index of 0 : i = 0 // 0, 1, 2, 3, 4...
+// now we want to loop backwards, meaning from the last element in the array until loop reaches index of 0 //  ... 4, 3, 2, 1, 0
+
+for (let i = jonasArray.length - 1; i >= 0; i--) {
+  console.log(i, jonasArray[i]);
+}
+
+// break down ---
+// let i = jonasArray.length - 1; ---- counter starts from last element in the Array.
+// i >= 0; ----- logical condition, continue to iterate until counter reaches the index of 0.
+// i-- // decrease the counter by 1, starting from index of the last element in the array until it reaches element positioned at index 0.
+
+// Loop inside of a loop
+
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(`------Starting exercise ${exercise}`);
+
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Lifting weight repetition ${rep}`);
+  }
+}
+
+const todaysRoutine = [
+  "Jumping Jacks",
+  "Squats",
+  "Lunges",
+  "Burpees",
+  "Mountain Climbers",
+];
+
+for (let i = 0; i < todaysRoutine.length; i++) {
+  console.log(`------ Starting with ${todaysRoutine[i]}`);
+
+  for (let j = 1; j < 6; j++) {
+    console.log(`${todaysRoutine[i]} ${j}`);
+  }
+}
+
+// while__loop --- In while loop, we can only specify a logical condition:
+
+// Example
+
+// for__loop for comparison
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetion ${rep}`);
+// }
+
+// while__loop to achieve same results as above mentioned for__loop:
+
+let rep = 1; // starting counter is specified outside the while loop.
+
+while (rep <= 10) {
+  // while loop runs/iterates until the specified condition is true.
+  console.log(`Lifting weights repetion ${rep}`);
+  rep++; // Counter increment is mentioned after stating the output of the while loop.
+}
+// NOTE: Usually we won't use while__loop if we need a counter.
+// Above example was for comparison the two types of loops.
+
+//// while__loop does not really need a counter.
+//// while__loop only requires a condition, which needs to stay TRUE for it to keep running.
+//// when we dont know how many times the counter should run, we use while__loop.
+
+/// while__loop ----Example: continue to roll a dice untill we roll 6
+
+// Math.random() - creates number between 0 and 1 (Not including 1)
+// We then multiply it by 6 - this gives us random decimal numbers
+// Math.truch removes the decimal part, giving us whole numbers between 0 to 5.
+// When we add 1, we get numbers between 1 to 6;
+
+let dice = Math.trunc(Math.random() * 6 + 1); // This creates only one random number.
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice}`); // Therefore, the code until here generates a single dice value; if its NOT 6, the loop will run forever.
+  dice = Math.trunc(Math.random() * 6 + 1); // To generate new dice values, we have to reassign dice value, at the end of each iteration.
+  if (dice === 6) {
+    console.log("Loop is about to end..."); // Checks if new generated number is 6, If yes, it logs -> Loop is about to end...
+  }
+}
+
+// Further breakdown of the above code:
+
+// 1) let dice = Math.trunc(Math.random() * 6 + 1); ---- generates a random dice number.
+// 2) while(dice !== 6) ---- we check if the number generated above is 6
+// 3) If the number generated in not 6, we enter the loop. Which then because of console.log(`You rolled a ${dice}`); logs ---- You rolled a 2,
+// 4) Next reassign the dice value to generate new random number -> dice = Math.trunc(Math.random() * 6 + 1); inside the while__loop;
+
+// Challenge 04
+
+const billValue = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+const tipValue = [];
+const totalBill = [];
+
+const arr = [];
+
+for (let i = 0; i < billValue.length; i++) {
+  const calcTips = (billValue) =>
+    billValue >= 50 && billValue <= 300 ? billValue * 0.15 : billValue * 0.2;
+
+  tipValue.push(calcTips(billValue[i]));
+  totalBill.push(billValue[i] + tipValue[i]);
+
+  console.log(i, tipValue[i], totalBill[i]);
+
+  function calcAverage(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+      // sum = sum + arr[i];               // sum = current value of sum + arr received as an input at the current position
+      sum += arr[i];
+    }
+    return sum / arr.length;
+  }
+
+  console.log(calcAverage(totalBill));
+  console.log(calcAverage(tipValue));
+}
+
+// (Section 5--- Udemy) Challenge 01 :
+//Given an array of forecasted maximum temperatures, the thermometer displays a
+//string with the given temperatures. Example: [17, 21, 23] will print "... 17ºC in 1
+//days ... 21ºC in 2 days ... 23ºC in 3 days ..."
+
+//Your tasks:
+//1. Create a function 'printForecast' which takes in an array 'arr' and logs a
+//string like the above to the console. Try it with both test datasets.
+//2. Use the problem-solving framework: Understand the problem and break it up
+//into sub-problems!
+
+//Test data:
+//Data 1: [17, 21, 23]
+//Data 2: [12, 5, -5, 0, 4].
+
+const degree = "\u00B0";
+
+const tempData1 = [17, 21, 23];
+const tempData2 = [12, 5, -5, 0, 4];
+
+const printForecast = function (arr) {
+  let str = "";
+  for (let i = 0; i < arr.length; i++) {
+    str = str + `${arr[i]}${degree}C in ${i + 1} days ... `; // str += `${arr[i]}${degree}C in ${i + 1} days ... `;
+  }
+  console.log("... " + str);
+};
+
+printForecast(tempData1);
+printForecast(tempData2);
+
+// (Section 5--- Udemy) Challenge 02 :
+
+// Build a time tracking application for freelancers.
+// You need a function that receives daily work hours for a certain week, and returns:
+// --- Total hours worked
+// --- Avg daily hours
+// --- Day with most hours worked
+// --- Number of days worked
+// --- Whether week was full-time (worked for 35hours or more)
+
+const timeData = [7.5, 8, 6.5, 0, 8.5, 5, 0];
+
+const timeTracker = function (hrs) {
+  let daysWorked;
+  let totalHours = 0;
+  let maxHours = hrs[0];
+  const daysOfTheWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  for (let i = 0; i < hrs.length; i++) {
+    const dailyHours = hrs[i];
+    totalHours += hrs[i];
+    daysWorked = hrs.filter((elements) => elements > 0);
+
+    if (dailyHours === 0) {
+      continue;
+    }
+
+    if (dailyHours !== 0) {
+      if (dailyHours > maxHours) maxHours = dailyHours;
+    }
+  }
+
+  const maxDay = daysOfTheWeek[hrs.indexOf(maxHours)];
+  const weeklyHours = totalHours >= 35;
+  const numDaysWorked = daysWorked.length;
+  const avgDailyHours = parseFloat((totalHours / hrs.length).toFixed(1));
+
+  // return `Freelancer has worked for ${numDaysWorked} days last week with a total of ${totalHours} hours, and an average of ${avgDailyHours} hours per day. Freelancer worked most on a day with ${maxHours} hours, this was ${weeklyHours} week`;
+  return {
+    totalHoursWorked: `${totalHours} hours`,
+    dailyAvgHours: `${avgDailyHours} hours`,
+    dayWithMostHours: `${maxDay} with ${maxHours} hours`,
+    numOfDaysWorked: `${numDaysWorked} days`,
+    isFullTime: `${weeklyHours}`,
+  };
+};
+
+console.log(timeTracker(timeData));
+
+/// Solution by ChatGPT
+/// Option 1
+function analyzeWorkWeek(workHours) {
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  // Calculate total hours worked
+  let totalHours = workHours.reduce((sum, hours) => sum + hours, 0);
+
+  // Calculate average daily hours (rounded to one decimal)
+  let avgDailyHours = parseFloat((totalHours / workHours.length).toFixed(1));
+
+  // Find the day with most hours worked
+  let maxHours = Math.max(...workHours);
+  let maxDay = daysOfWeek[workHours.indexOf(maxHours)];
+
+  // Count the number of days worked (days with more than 0 hours)
+  let daysWorked = workHours.filter((hours) => hours > 0).length;
+
+  // Determine if it was a full-time week (35 hours or more)
+  let isFullTime = totalHours >= 35;
+
+  return {
+    totalHours,
+    avgDailyHours,
+    maxDay,
+    daysWorked,
+    isFullTime,
+  };
+}
+
+console.log(analyzeWorkWeek(timeData));
+
+// Explanation:
+
+// Total hours worked: Sum of all hours in the array.
+// Avg daily hours: Total hours divided by 7, rounded to one decimal.
+// Day with most hours worked: Finds the max value and maps it to the weekday.
+// Number of days worked: Counts days with hours greater than 0.
+// Full-time week check: If total hours are 35 or more, returns true.
+
+/// Option 2 Using For Loop
+
+function analyzeWorkWeek(workHours) {
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  let totalHours = 0;
+  let maxHours = 0;
+  let maxDay = "";
+  let daysWorked = 0;
+
+  for (let i = 0; i < workHours.length; i++) {
+    totalHours += workHours[i];
+    if (workHours[i] > maxHours) {
+      maxHours = workHours[i];
+      maxDay = daysOfWeek[i];
+    }
+    if (workHours[i] > 0) {
+      daysWorked++;
+    }
+  }
+
+  let avgDailyHours = parseFloat((totalHours / workHours.length).toFixed(1));
+  let isFullTime = totalHours >= 35;
+
+  return {
+    totalHours,
+    avgDailyHours,
+    maxDay,
+    daysWorked,
+    isFullTime,
+  };
+}
+console.log(analyzeWorkWeek(timeData));
+
+/// Option 3 -- Using Map and Reduce
+
+function analyzeWorkWeekAlternative(workHours) {
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  let totalHours = workHours.reduce((sum, hours) => sum + hours, 0);
+  let avgDailyHours = parseFloat((totalHours / workHours.length).toFixed(1));
+  let maxHours = Math.max(...workHours);
+  let maxDay = daysOfWeek[workHours.indexOf(maxHours)];
+  let daysWorked = workHours
+    .map((hours) => (hours > 0 ? 1 : 0))
+    .reduce((sum, val) => sum + val, 0);
+  let isFullTime = totalHours >= 35;
+
+  return {
+    totalHours,
+    avgDailyHours,
+    maxDay,
+    daysWorked,
+    isFullTime,
+  };
+}
+
+console.log(analyzeWorkWeekAlternative(timeData));
+
+/// Option 4 -- Using forEach
+
+function analyzeWorkWeekForEach(workHours) {
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  let totalHours = 0;
+  let maxHours = 0;
+  let maxDay = "";
+  let daysWorked = 0;
+
+  workHours.forEach((hours, index) => {
+    totalHours += hours;
+    if (hours > maxHours) {
+      maxHours = hours;
+      maxDay = daysOfWeek[index];
+    }
+    if (hours > 0) {
+      daysWorked++;
+    }
+  });
+
+  let avgDailyHours = parseFloat((totalHours / workHours.length).toFixed(1));
+  let isFullTime = totalHours >= 35;
+
+  return {
+    totalHours,
+    avgDailyHours,
+    maxDay,
+    daysWorked,
+    isFullTime,
+  };
+}
+
+console.log(analyzeWorkWeekForEach(timeData));
