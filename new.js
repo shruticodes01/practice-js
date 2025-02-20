@@ -668,6 +668,103 @@ const printForecast = function (arr) {
 printForecast(tempData1);
 printForecast(tempData2);
 
+// Challenge 01 : ChatGPT Solutions ->
+
+// Solution using a for loop
+function printForecast1(arr) {
+  let forecast = "... ";
+  for (let i = 0; i < arr.length; i++) {
+    forecast += `${arr[i]}ºC in ${i + 1} days ... `;
+  }
+  console.log(forecast);
+}
+
+// Example usage
+
+printForecast1(tempData1);
+printForecast1(tempData2);
+
+// Alternative Approach using map and join()
+// A more functional way using map(): --- 🔹 Why use map()? It transforms each element and join() merges everything into a string.
+
+function printForecast2(arr) {
+  const forecast = arr
+    .map((temp, i) => `${temp}ºC in ${i + 1} days`)
+    .join(" ... ");
+  console.log("... " + forecast + " ...");
+}
+
+// Example usage
+printForecast2(tempData1);
+printForecast2(tempData2);
+
+// Using a while Loop --- 🔹 Why use while? It's useful if you need flexibility, like stopping early based on a condition.
+
+function printForecast3(arr) {
+  let forecast = "... ";
+  let i = 0;
+  while (i < arr.length) {
+    forecast += `${arr[i]}ºC in ${i + 1} days ... `;
+    i++;
+  }
+  console.log(forecast);
+}
+
+printForecast3(tempData1);
+printForecast3(tempData2);
+
+//  Using reduce() --- Why use reduce()? It accumulates values in a single pass, making it efficient for building a string.
+
+function printForecast4(arr) {
+  const forecast = arr.reduce(
+    (acc, temp, i) => acc + `${temp}ºC in ${i + 1} days ... `,
+    "... "
+  );
+  console.log(forecast);
+}
+
+printForecast4(tempData1);
+printForecast4(tempData2);
+
+//  Using forEach() --- 🔹 Why use forEach()? It simplifies iteration without needing to manage an index manually.
+
+function printForecast5(arr) {
+  let forecast = "... ";
+  arr.forEach((temp, i) => {
+    forecast += `${temp}ºC in ${i + 1} days ... `;
+  });
+  console.log(forecast);
+}
+
+printForecast5(tempData1);
+printForecast5(tempData2);
+
+//  Using Template Literals with join() --- Why use join()? It avoids manual string concatenation, making it more readable.
+
+function printForecast6(arr) {
+  console.log(
+    "... " +
+      arr.map((temp, i) => `${temp}ºC in ${i + 1} days`).join(" ... ") +
+      " ..."
+  );
+}
+
+printForecast6(tempData1);
+printForecast6(tempData2);
+
+// Using Recursion (Advanced) --- 🔹 Why use recursion? It's useful when avoiding explicit loops and is good for problems requiring breaking down tasks.
+
+function printForecast7(arr, i = 0, result = "... ") {
+  if (i >= arr.length) {
+    console.log(result);
+    return;
+  }
+  printForecast7(arr, i + 1, result + `${arr[i]}ºC in ${i + 1} days ... `);
+}
+
+printForecast7(tempData1);
+printForecast7(tempData2);
+
 // (Section 5--- Udemy) Challenge 02 :
 
 // Build a time tracking application for freelancers.
@@ -696,7 +793,6 @@ const timeTracker = function (hrs) {
   for (let i = 0; i < hrs.length; i++) {
     const dailyHours = hrs[i];
     totalHours += hrs[i];
-    daysWorked = hrs.filter((elements) => elements > 0);
 
     if (dailyHours === 0) {
       continue;
@@ -709,6 +805,7 @@ const timeTracker = function (hrs) {
 
   const maxDay = daysOfTheWeek[hrs.indexOf(maxHours)];
   const weeklyHours = totalHours >= 35;
+  daysWorked = hrs.filter((elements) => elements > 0);
   const numDaysWorked = daysWorked.length;
   const avgDailyHours = parseFloat((totalHours / hrs.length).toFixed(1));
 
@@ -889,3 +986,35 @@ function analyzeWorkWeekForEach(workHours) {
 }
 
 console.log(analyzeWorkWeekForEach(timeData));
+
+// javascript.info ---  Loops
+// Repeat until the input is correct
+// Write a loop which prompts for a number greater than 100. If the visitor enters another number – ask them to input again.
+// The loop must ask for a number until either the visitor enters a number greater than 100 or cancels the input/enters an empty line.
+
+const promptUser = prompt("Enter a number!");
+
+let i;
+do {
+  i = prompt("Enter a number greater than 100?", 0);
+} while (i <= 100 && i);
+
+// Output Prime Numbers
+// An integer number greater than 1 is called a prime if it cannot be divided without a remainder by anything except 1 and itself.
+// In other words, n > 1 is a prime if it can’t be evenly divided by anything except 1 and n.
+// For example, 5 is a prime, because it cannot be divided without a remainder by 2, 3 and 4.
+
+// Write the code which outputs prime numbers in the interval from 2 to n.
+// For n = 10 the result will be 2,3,5,7.
+// P.S. The code should work for any n, not be hard-tuned for any fixed value.
+
+let n = 10;
+
+nextPrime: for (let i = 2; i <= n; i++) {
+  for (let j = 2; j < i; j++) {
+    // look for a divisor..
+    if (i % j == 0) continue nextPrime; // not a prime, go next i
+  }
+
+  alert(i); // a prime
+}
